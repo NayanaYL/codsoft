@@ -1,0 +1,35 @@
+import re
+
+# Define the chatbot's name
+chatbot_name = "SimpleBot"
+
+def chatbot_response(user_input):
+    user_input = user_input.lower().strip()
+    
+    if re.search(r'\bhello\b', user_input):
+        return f"Hello! How can I assist you today?"
+    elif re.search(r'\bhow are you\b', user_input):
+        return "I'm just a bot, but I'm here to help! How can I assist you?"
+    elif re.search(r'\bwhat is your name\b', user_input):
+        return f"My name is {chatbot_name}."
+    elif re.search(r'\bbye\b', user_input):
+        return "Goodbye! Have a great day!"
+    else:
+        return "I'm sorry, I don't understand that. Can you please rephrase?"
+
+def chat():
+    print(f"{chatbot_name}: Hello! How can I assist you today?")
+    while True:
+        try:
+            user_input = input("You: ")
+            if user_input.lower() in ["bye", "exit", "quit"]:
+                print(f"{chatbot_name}: Goodbye! Have a great day!")
+                break
+            response = chatbot_response(user_input)
+            print(f"{chatbot_name}: {response}")
+        except Exception as e:
+            print(f"{chatbot_name}: An error occurred: {e}")
+
+# Run the chatbot
+if _name_ == "_main_":
+    chat()
